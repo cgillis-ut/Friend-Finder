@@ -28,8 +28,7 @@
      <label for="image"><h5>Link to Photo</h5></label>
     <input type="text" class="form-control" id="image" placeholder="Required">
   </div>
-  <hr>
-</div>
+ </div>
 <div class="row">
 <hr>
 <h5>1 - The best happy hour drink is an apple martini.</h5>
@@ -129,10 +128,8 @@
 <button class="btn btn-default btn-primary" id="add-user" type="submit">Meet a Friend!</button>
 
 <script>
-
-  var friends = [];
-
 $("#add-user").on("click", function(event) {
+
 
   var name = $("#name").val().trim();
 	var image = $("#image").val().trim();
@@ -146,35 +143,18 @@ $("#add-user").on("click", function(event) {
 	scores: scores
 	};
 
-friends.push(friend);
-console.log(friends);
+
+$.post("/api/friends", friend,
+        function(data) {
+        	console.log("data sent");
+
+        	//show modal
+        });
+
+
 });
 
 
-
-	
-
-
-	var bestFriend = "";
-
-	var bestFriendDiff = 100;
-
-	friends.forEach(function(friend, index, array) {
-		var totalDiff = 0;
-		
-		for (var i = 0; i < friend["scores"].length; i++ ) {
-			var diff = Math.abs(friend["scores"][i] - req.body.scores[i]);  // get abs value here
-			totalDiff += diff;
-	}
-
-		if (totalDiff < bestFriendDiff){
-			bestFriendDiff = totalDiff;
-			bestFriend = friend.name;
-	}
-// push current user into friends array
-// res.send(bestFriend);
-
-  });
 
 //submit button
 // if(nameValue !== ""){
@@ -183,6 +163,7 @@ console.log(friends);
 // } else {
 // 	alert("please enter a name!");
 // }
+
  </script>
 
 
