@@ -1,7 +1,7 @@
 //load modules
 
 var express = require("express");
-var body-parser = require("body-parser");
+var bodyParser = require("body-parser");
 var path = require("path");
 
 // declare the server
@@ -17,6 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+//*** why this syntax??
+require("./app/routing/htmlRoutes")(app);
+require("./app/routing/apiRoutes")(app);
 
 //create routes, get post
 //start server
+app.listen(8080, function(){
+	console.log("app is running");
+});

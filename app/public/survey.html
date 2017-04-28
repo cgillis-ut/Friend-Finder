@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>	
+<title>Friend Finder Survey</title>
+</head>
+
+<body>
+
+
+
+<div class="container">
+<div class="row"><h1>Survey Questions</h1>
+<hr>
+</div>
+
+<div class="row">
+<h4>About You</h4>
+ <div class="form-group">
+    <label for="name"><h5>Name</h5></label>
+    <input type="text" class="form-control" id="name" placeholder="Required">
+		<br>
+     <label for="image"><h5>Link to Photo</h5></label>
+    <input type="text" class="form-control" id="image" placeholder="Required">
+  </div>
+  <hr>
+</div>
+<div class="row">
+<hr>
+<h5>1 - The best happy hour drink is an apple martini.</h5>
+ <select class="form-control" id="q1">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>2 - The Walking Dead is the one TV show you never miss</h5>
+  <select class="form-control" id="q2">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>3 - Ice cream is your go-to midnight snack</h5>
+  <select class="form-control" id="q3">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>4 - You're known for your work ethic and ambition</h5>
+  <select class="form-control" id="q4">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>5 - Your ideal weekend would be a quick getaway to Miami</h5>
+  <select class="form-control" id="q5">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>6 - You feel most productive in the morning time</h5>
+  <select class="form-control" id="q6">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>7 - The best pizza is found in New York City</h5>
+  <select class="form-control" id="q7">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+
+<h5>8 - In a fight between Spiderman and Batman - Batman wins</h5>
+  <select class="form-control" id="q8">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+
+<h5>9 - If you could have a superpower, you'd be invisible</h5>
+  <select class="form-control" id="q9">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+
+<h5>10 - You see yourself still coding 5-10 years from now</h5>
+  <select class="form-control" id="q10">
+  <option value="1">1 Strongly Disagree </option>
+  <option value="2">2 </option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5 Strongly Agree </option>
+</select>
+</div>
+<hr>
+
+<button class="btn btn-default btn-primary" id="add-user" type="submit">Meet a Friend!</button>
+
+<script>
+
+  var friends = [];
+
+$("#add-user").on("click", function(event) {
+
+  var name = $("#name").val().trim();
+	var image = $("#image").val().trim();
+
+	var scores = [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), 
+   $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()];
+   
+	var friend = {
+	name: name,
+	image: image,
+	scores: scores
+	};
+
+friends.push(friend);
+console.log(friends);
+});
+
+
+
+	
+
+
+	var bestFriend = "";
+
+	var bestFriendDiff = 100;
+
+	friends.forEach(function(friend, index, array) {
+		var totalDiff = 0;
+		
+		for (var i = 0; i < friend["scores"].length; i++ ) {
+			var diff = Math.abs(friend["scores"][i] - req.body.scores[i]);  // get abs value here
+			totalDiff += diff;
+	}
+
+		if (totalDiff < bestFriendDiff){
+			bestFriendDiff = totalDiff;
+			bestFriend = friend.name;
+	}
+// push current user into friends array
+// res.send(bestFriend);
+
+  });
+
+//submit button
+// if(nameValue !== ""){
+// 	name = $("#name").val().trim();
+//  	console.log(name);
+// } else {
+// 	alert("please enter a name!");
+// }
+ </script>
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
