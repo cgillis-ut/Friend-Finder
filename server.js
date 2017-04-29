@@ -8,7 +8,7 @@ var path = require("path");
 var app = express();
 
 //delcare port 
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
 //middleware
 // Sets up the Express app to handle data parsing
@@ -24,4 +24,5 @@ require("./app/routing/apiRoutes")(app);
 //start server
 app.listen(8080, function(){
 	console.log("app is running");
+	console.log()
 });
