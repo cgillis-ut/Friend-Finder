@@ -22,7 +22,7 @@ require("./app/routing/apiRoutes")(app);
 
 //create routes, get post
 //start server
-app.listen(8080, function(){
+app.listen(PORT, function(){
 	console.log("app is running");
 	console.log()
 });
